@@ -22,4 +22,4 @@ const mergeStyles = async(source, output) => {
     }
 }
 
-mergeStyles(['05-merge-styles', 'styles'], ['05-merge-styles', 'project-dist', 'main.css']).then().catch(e => console.log(e));
+mergeStyles(['05-merge-styles', 'styles'], ['05-merge-styles', 'project-dist', 'bundle.css']).then().catch(e => console.log(e));
