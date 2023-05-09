@@ -16,6 +16,8 @@ const getSize = async (path) => {
 const getFilesInFolder = async  () => {
     try {
         for (const file of (await readDirectory(filePath(['03-files-in-folder', 'secret-folder'])))) {
+            if(!file.isFile()) continue;
+
             const path = filePath(['03-files-in-folder', 'secret-folder', file.name]);
             const { name, ext} = getInformation(path);
             const size = await getSize(path);
