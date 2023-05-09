@@ -1,6 +1,6 @@
 const { extname, resolve} = require('path');
 const { createWriteStream, createReadStream } = require('fs');
-const { readFile, mkdir, readdir, copyFile } = require("fs/promises");
+const { readFile, mkdir, readdir, copyFile, access, rm} = require("fs/promises");
 const path = require('path');
 
 const filePath = (src) => resolve(...src);
@@ -11,6 +11,8 @@ const makeWriteStream = (src) => createWriteStream(filePath(src));
 
 const makeDirectory = (path) => mkdir(path);
 const readDirectory = async (path) => await readdir(path, { withFileTypes: true });
+
+const deleteDirectory = (path) => rm(path, { recursive: true });
 
 const copyDirectory = async (source, output) => {
     await makeDirectory(filePath(output));
@@ -66,12 +68,14 @@ const buildHtml = async () => {
 
 const buildPage = async (source, output) => {
     try {
+        await deleteDirectory(filePath(output));
+    } catch (e) {
+        console.log('start build page');
+    } finally {
         await makeDirectory(filePath(output));
         await mergeStyles([...source, 'styles'], [...output, 'style.css']);
         await copyDirectory( ['06-build-page', 'assets'], ['06-build-page', 'project-dist', 'assets']);
         await buildHtml();
-    } catch (e) {
-        throw Error(e);
     }
 }
 
