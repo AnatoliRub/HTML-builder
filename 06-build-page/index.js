@@ -1,6 +1,6 @@
 const { extname, resolve} = require('path');
 const { createWriteStream, createReadStream } = require('fs');
-const { readFile, mkdir, readdir, rm, copyFile } = require("fs/promises");
+const { readFile, mkdir, readdir, copyFile } = require("fs/promises");
 const path = require('path');
 
 const filePath = (src) => resolve(...src);
@@ -11,7 +11,6 @@ const makeWriteStream = (src) => createWriteStream(filePath(src));
 
 const makeDirectory = (path) => mkdir(path);
 const readDirectory = async (path) => await readdir(path, { withFileTypes: true });
-const deleteDirectory = (path) => rm(path, { recursive: true });
 
 const copyDirectory = async (source, output) => {
     await makeDirectory(filePath(output));
