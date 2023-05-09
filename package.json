@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "description": "html-builder task for RSSchool",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "task1": "node 01-read-file/index.js",
+    "task2": "node 02-write-file/index.js",
+    "task3": "node 03-files-in-folder/index.js",
+    "task4": "node 04-copy-directory/index.js",
+    "task5": "node 05-merge-styles/index.js",
+    "task6": "node 06-build-page/index.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
   },
   "author": "evgeniimal",
   "license": "ISC",
